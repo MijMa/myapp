@@ -13,14 +13,13 @@ let schema = yup.object().shape({
   }),
 });
  
-console.log("validatormodule was called")
 //console.log(validator());
   // check validity
-function validator(err, req, res, next) {
-  res.end().status(418);
-  console.log('/n', "Validointifunktio kutusttu");
-  if (err) throw"foobar";
-  schema.isValid(req.body)
+  //(err, req, res, next) -rakenteita kutsutaan vain jos promiseketju heittää errorin
+async function validator(req, res, next) { 
+  
+  console.log("\n", "Validointifunktio kutusttu");
+  console.log(await (schema.isValid(req.body)));
   next(); //Tarvitaanko tätä?
   /*schema
   .isValid({
@@ -42,8 +41,6 @@ function validoisyote() {
   });
 }
 
-//validoisyote();
-
 /*
 async function asynkroninenfunktio() {
 
@@ -54,10 +51,6 @@ async function asynkroninenfunktio() {
   let odotetaanlupausta = await lupaus;
   console.log("lupausta odotettu");
 }
-
-asynkroninenfunktio().then(validointifunktio);
-// \/
-console.log("Tää tehdään ennenku muut ehtii suorittaa, lällälläää");
 */
 
 module.exports = validator;

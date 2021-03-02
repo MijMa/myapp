@@ -6,27 +6,21 @@ var validator = require('../middleware/validator.js');
 
 
 /* GET users listing. */
-router.get('/users', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-//Tämä on oikeastaan hyvin simppeli:
-//kutsutaan exportattua funktiota 'validate' sillä datalla jonka app.put palauttaa.
-//Sitten kutsutaan DataController.updatea ihan samalla??? datalla.
-console.log(validator);
-router.put('/users', validator);
-
-//curl -X PUT -H "Content-Type: application/json" -d '{"key1":"value"}' "http://localhost:3000/users"
+router.put('/', validator);
 
 //kokeillaan JSON-lisäystä
-fs.readFile('persontestdata.json', (err, data, validator, next) => {
+fs.readFile('./persontestdata.json', (err, data) => {
+  console.log("File, read");
   var person = JSON.parse(data);
   var today = JSON.stringify(new Date());
   person.currentdate = today;
   person = JSON.stringify(person, null, '\t');
-  if (err) console.log(err);
-    fs.writeFile('persontestdata.json', person, function() {
-    });
+  fs.writeFile('persontestdata.json', person, function(){});
+  console.log("File, written");
 });
 
 module.exports = router;

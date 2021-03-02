@@ -12,12 +12,7 @@ for (var i in kirovjson) {
     }
 }
 
-router.get('/kirov/status', function(req, res, next) {
-    //throw"foobar";
-    res.send(kirovjson);
-});
-
-router.use('/kirov', function (req, res, next) {
+router.get('/', function (req, res, next) {
     console.log('Request URL:', req.originalUrl)
     next();
   }, function (req, res, next) {

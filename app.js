@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+//LAITA ROUTERAKENNE UUSIKSI JA TARKISTA
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var kirovRouter = require('./routes/kirov');
@@ -22,9 +22,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/', usersRouter);
-app.use('/', kirovRouter);
-app.use('/', typescriptrouter);
+app.use('/users', usersRouter);
+app.use('/kirov', kirovRouter);
+app.use('/typescriptrouter', typescriptrouter);
 
 /*app.use(function(err, req, res, next) {
   console.log(err);
