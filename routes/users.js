@@ -12,15 +12,20 @@ router.get('/', function(req, res, next) {
 
 router.put('/', validator);
 
-//kokeillaan JSON-lisäystä
+//kokeillaan JSON-lisäystä, kun ERR ottaa pois, Cannot set property 'currentdate' of null -tarkasta suoritusjärj
 fs.readFile('./persontestdata.json', (err, data) => {
+  //AWAIT!?
+  setTimeout(() => {
+    console.log("I waited for a while", data);
+  }, 3000);
   console.log("File, read");
   var person = JSON.parse(data);
   var today = JSON.stringify(new Date());
   person.currentdate = today;
   person = JSON.stringify(person, null, '\t');
-  fs.writeFile('persontestdata.json', person, function(){});
-  console.log("File, written");
+  fs.writeFile('persontestdata.json', person, function() {
+    console.log("File, written");
+  });
 });
 
 module.exports = router;
