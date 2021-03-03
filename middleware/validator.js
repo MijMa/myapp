@@ -17,30 +17,41 @@ let schema = yup.object().shape({
   // check validity
   //(err, req, res, next) -rakenteita kutsutaan vain jos promiseketju heittää errorin
 async function validator(req, res, next) { 
-  
   console.log("\n", "Validointifunktio kutusttu");
   console.log(await (schema.isValid(req.body)));
-  next(); //Tarvitaanko tätä?
-  /*schema
-  .isValid({
-    name: "jim",
-    id: 1245724124,
-    age: 24,
-  })
-  .then(function (valid) {
-      console.log(valid); // => true/false
-  }); */
-}
+  try {
+    await schema.isValid(req.body);
+    return next();
+  } catch (e) {
+    const {errors, path} = e;
+    return res.status(400).json({errors, path});
+  }
+
+  
+};
 
 
 //Herjaa vain jos ei pysty validoida
 function validoisyote() {
-  schema.validate({ name: "jimmyboi", age: 11 }).catch(function (err) {
+
+  jsonobj = {
+    id: "aknowledged",
+    name: "optimal",
+    age: "set",
+    email: "ready",
+    website: "set",
+    currentdate: "\"2021-03-03T09:24:55.346Z\""
+  };
+  currentdatejson = JSON.parse(jsonobj.currentdate)
+  currentdateobj = new Date(currentdatejson);
+  console.log(currentdateobj);
+  jsonobj.currentdate = currentdateobj;
+  schema.validate(jsonobj).catch(function (err) {
     console.log(err.name); // => 'ValidationError'
     console.log(err.errors); // => ['Deve ser maior que 18']
   });
 }
-
+validoisyote();
 /*
 async function asynkroninenfunktio() {
 
