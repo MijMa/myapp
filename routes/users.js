@@ -9,36 +9,16 @@ var validator = require('../middleware/validator.js');
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
+/* PUT Validate received json. */
+router.put('/', validator, vastaanotaPUT);
 
 function vastaanotaPUT(req, res, next) {
-  
   fs.readFile('./persontestdata.json', (err, data) => {
-    console.log(err);
-    console.log("File, read");
-    var person = JSON.parse(data);
-    var today = JSON.stringify(new Date());
-    person.currentdate = today;
-    person = JSON.stringify(person, null, '\t');
+    var person = JSON.stringify(req.body, null, '\t');
     fs.writeFile('persontestdata.json', person, function() {
-      console.log("File, written");
     });
   });
-  next();
+  res.send("Ur a good bot, thanks for the PUT. You don't deserve an error ^^");
 }
-
-//router.put('/', validator, vastaanotaPUT);
-
-//kokeillaan JSON-lisäystä, kun ERR ottaa pois, Cannot set property 'currentdate' of null -tarkasta suoritusjärj
-/*fs.readFile('./persontestdata.json', (err, data) => {
-  if(err) {throw err;}
-  console.log("File, read");
-  var person = JSON.parse(data);
-  var today = JSON.stringify(new Date());
-  person.currentdate = today;
-  person = JSON.stringify(person, null, '\t');
-  fs.writeFile('persontestdata.json', person, function() {
-    console.log("File, written");
-  });
-});*/
 
 module.exports = router;

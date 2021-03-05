@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-//LAITA ROUTERAKENNE UUSIKSI JA TARKISTA
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var kirovRouter = require('./routes/kirov');
@@ -31,8 +31,8 @@ app.use('/typescriptrouter', typescriptrouter);
   next();
 }); */
 
-// catch 404 and forward to error handler
-
+// catch 404 and forward to error handler,
+//The error creation can also simply mean that the program ran trough all of it's promises.
 app.use(function(req, res, next) {
   next(createError(404));
 });
