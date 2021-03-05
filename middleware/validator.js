@@ -21,7 +21,6 @@ async function validator(req, res, next) {
   req.body.currentdate = currentdateobj;
 
   try {
-    console.log(await schema.validate(req.body));
     await schema.validate(req.body);
     return next();
   } catch (e) {

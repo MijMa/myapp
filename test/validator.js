@@ -2,6 +2,17 @@ const chai = require('chai')
 const expect = chai.expect
 const validator = require('../middleware/validator')
 
+describe("validator validate()", () => {
+    it("should respond with status 200", function() {
+        const response = await chai.request(server).put("/users")
+        res.should.have.status(200);
+    })
+    //??????
+    it("should return true when id exists within PUT request", ()=> {
+		expect(validator.validator()).to.be.true
+	})
+})
+
 describe("validator isNumValid()", () => {
 	it("should return true for a number in between 10 and 70", ()=> {
 		expect(validator.isNumValid(39)).to.be.true
