@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
-const app = require('../app.js');
+const app = require('../src/app');
 var validator = require('../middleware/validator.js');
 
 
@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 /* PUT Validate received json. */
-router.put('/', validator, vastaanotaPUT);
+router.put('/', validator.validator, vastaanotaPUT);
 
 function vastaanotaPUT(req, res, next) {
   fs.readFile('./persontestdata.json', (err, data) => {

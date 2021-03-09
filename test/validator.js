@@ -1,13 +1,21 @@
+var server = require('../bin/www')
+
 const chai = require('chai')
 const expect = chai.expect
+
 const validator = require('../middleware/validator')
 
 //Testataan PUT requestia /users -routelle,
 // käytä omaa expressin app-instanssia testipuolella PUT -pyynnön lähettämiseen?
 // kokeillaan ensin ilman mitään lisä-instanssia, en usko että se on tarpeellinen
+// Vak-palvelu käyttää samaa ideaa, käytetään serveriä ja tehdään ihan uusi express-instanssi testausta varten
+
+//Nyt tarvitsisi luoda siis uusi express instanssi tai vain käyttää devausversiota,
+// uuden express-instanssin luominen täällä testikansiossa vaatii rakennemuutosia,
+// toimintalogiikkaa tarvitsee vielä setviä
 describe("validator validate()", () => {
     it("should respond with status 200", function() {
-        const response = await chai.request(server).put("/users")
+        const response = chai.request(server).put("/users")
         response.should.have.status(200);
     })
 })

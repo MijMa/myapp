@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node ./src/www",
     "test": "mocha --reporter nyan test/validator.js"
   },
   "dependencies": {
