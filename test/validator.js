@@ -18,21 +18,8 @@ const requestBody = {
 
 describe("validator validate()", () => {
     it("should respond with status 200", async function() {
-        const response = await chai.request(server).get("/users");
 		
-        expect(response.status).to.equal(200);
-		response.should.have.status(200);
-
-		expect(typeof response.body).to.equal("object");
-    });
-})
-
-describe("validator validate()", () => {
-    it("should respond with status 200", async function() {
-
 		const response = await chai.request(server).put("/users").send(requestBody);
-		console.log("we here?");
-		console.log(response);
 		expect(response.status).to.equal(200);
         //response.should.have.status(200);
     })

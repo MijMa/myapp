@@ -13,7 +13,6 @@ router.get('/', function(req, res, next) {
 router.put('/', validator.validator, vastaanotaPUT);
 
 function vastaanotaPUT(req, res, next) {
-  console.log("vastaanotaPUT kutsuttu");
   fs.readFile('../persontestdata.json', (err, data) => {
     var person = JSON.stringify(req.body, null, '\t');
     fs.writeFile('../persontestdata.json', person, function() {
