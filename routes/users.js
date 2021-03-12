@@ -13,9 +13,10 @@ router.get('/', function(req, res, next) {
 router.put('/', validator.validator, vastaanotaPUT);
 
 function vastaanotaPUT(req, res, next) {
-  fs.readFile('./persontestdata.json', (err, data) => {
+  console.log("vastaanotaPUT kutsuttu");
+  fs.readFile('../persontestdata.json', (err, data) => {
     var person = JSON.stringify(req.body, null, '\t');
-    fs.writeFile('persontestdata.json', person, function() {
+    fs.writeFile('../persontestdata.json', person, function() {
     });
   });
   res.send("Ur a good bot, thanks for the PUT. You don't deserve an error ^^");

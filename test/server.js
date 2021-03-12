@@ -1,4 +1,12 @@
-// test/server.js
+var express = require("express");
+var app = require('../src/app');
+var http = require('http');
 
-var expect = require("chai").expect;
-var request = require("request");
+var server = express();
+var port = (process.env.PORT || '3000');
+
+var server = http.createServer(app);
+server.listen(port);
+console.log(`Server running on ${port}`)
+
+module.exports = server;

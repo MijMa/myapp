@@ -1,39 +1,39 @@
-var server = require('../bin/www')
+var server = require('./server')
 
 const chai = require('chai')
-const expect = chai.expect
+var chaiHttp = require('chai-http');
+var expect  = require("chai").expect;
+chai.should();
 
-const validator = require('../middleware/validator')
+chai.use(chaiHttp);
 
-//Testataan PUT requestia /users -routelle,
-// käytä omaa expressin app-instanssia testipuolella PUT -pyynnön lähettämiseen?
-// kokeillaan ensin ilman mitään lisä-instanssia, en usko että se on tarpeellinen
-// Vak-palvelu käyttää samaa ideaa, käytetään serveriä ja tehdään ihan uusi express-instanssi testausta varten
+const requestBody = {
+	"id": 11,
+	"name": "optimal",
+	"age": "3",
+	"email": "kirov.ready@redarmy.ru",
+	"website": "https://www.set.ru",
+	"currentdate": "\"2000-10-21T09:24:50.346Z\""
+}
 
-//Nyt tarvitsisi luoda siis uusi express instanssi tai vain käyttää devausversiota,
-// uuden express-instanssin luominen täällä testikansiossa vaatii rakennemuutosia,
-// toimintalogiikkaa tarvitsee vielä setviä
 describe("validator validate()", () => {
-    it("should respond with status 200", function() {
-        const response = chai.request(server).put("/users")
-        response.should.have.status(200);
-    })
+    it("should respond with status 200", async function() {
+        const response = await chai.request(server).get("/users");
+		
+        expect(response.status).to.equal(200);
+		response.should.have.status(200);
+
+		expect(typeof response.body).to.equal("object");
+    });
 })
 
-describe("validator isNumValid()", () => {
-	it("should return true for a number in between 10 and 70", ()=> {
-		expect(validator.isNumValid(39)).to.be.true
-	})
-	it("should return false when the number is less 10", () => {
-		expect(validator.isNumValid(9)).to.be.false
-	})
-	it("should return false when the number is equal to 10", () => {
-		expect(validator.isNumValid(10)).to.be.false
-	})
-	it("should return false when the number is equal to 70", () => {
-		expect(validator.isNumValid(70)).to.be.false
-	})
-	it("should return false when the number is greater than 70", () => {
-		expect(validator.isNumValid(71)).to.be.false
-	})
+describe("validator validate()", () => {
+    it("should respond with status 200", async function() {
+
+		const response = await chai.request(server).put("/users").send(requestBody);
+		console.log("we here?");
+		console.log(response);
+		expect(response.status).to.equal(200);
+        //response.should.have.status(200);
+    })
 })
