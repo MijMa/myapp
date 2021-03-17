@@ -1,4 +1,4 @@
-var server = require('./server')
+var server = require('../src/www')
 
 const chai = require('chai')
 var chaiHttp = require('chai-http');
@@ -13,7 +13,7 @@ const requestBody = {
 	"age": "3",
 	"email": "kirov.ready@redarmy.ru",
 	"website": "https://www.set.ru",
-	"currentdate": "\"2000-10-21T09:24:50.346Z\""
+	"currentdate": "2000-10-21T09:24:50.346Z"
 }
 
 const requestBodyFail = {
@@ -21,7 +21,7 @@ const requestBodyFail = {
 	"age": "3",
 	"email": "kirov.ready@redarmy.ru",
 	"website": "https://www.set.ru",
-	"currentdate": "\"2000-10-21T09:24:50.346Z\""
+	"currentdate": "2000-10-21T09:24:50.346Z"
 }
 
 describe("validator validate()", () => {
