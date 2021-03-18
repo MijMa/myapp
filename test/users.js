@@ -36,8 +36,10 @@ describe("users vastaanotaPUT", async () => {
         //haetaan tiedostossa oleva aika
         const testjson = JSON.parse(fs.readFileSync('persontestdata.json'));
         var filetime = testjson.sentdate;
-        //katsotaan tasmaavatko tiedostossa oleva ja juuri otettava aika
+        //katsotaan tasmaavatko tiedostossa oleva ja juuri otettava aika, poistetaan millisekuntit.
         currenttime = JSON.stringify(new Date());
+        filetime = filetime.slice(0, -5);
+        currenttime = currenttime.slice(0, -5);
         expect(file('persontestdata.json')).to.contain('sentdate');
         expect(filetime).to.equal(currenttime);
     })
