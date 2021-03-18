@@ -13,7 +13,8 @@ const requestBody = {
 	"age": "3",
 	"email": "kirov.ready@redarmy.ru",
 	"website": "https://www.set.ru",
-	"currentdate": "2000-10-21T09:24:50.346Z"
+	"currentdate": "2000-10-21T09:24:50.346Z",
+	"sentdate": "2021-03-17T09:55:50.519Z"
 }
 
 const requestBodyFail = {
@@ -21,7 +22,8 @@ const requestBodyFail = {
 	"age": "3",
 	"email": "kirov.ready@redarmy.ru",
 	"website": "https://www.set.ru",
-	"currentdate": "2000-10-21T09:24:50.346Z"
+	"currentdate": "2000-10-21T09:24:50.346Z",
+	"sentdate": "2021-03-17T09:55:50.519Z"
 }
 
 describe("validator validate()", () => {
