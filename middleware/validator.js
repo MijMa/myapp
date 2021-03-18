@@ -17,10 +17,9 @@ let schema = yup.object().shape({
 
 //(err, req, res, next) -rakenteita kutsutaan vain jos promiseketju heittää errorin
 async function validator(req, res, next) {
-  var currentdatestring = JSON.parse(req.body.currentdate);
-  currentdateobj = new Date(currentdatestring);
-  req.body.currentdate = currentdateobj;
-
+  // var currentdatestring = JSON.parse(req.body.currentdate);
+  // currentdateobj = new Date(currentdatestring);
+  // req.body.currentdate = currentdateobj;
   try {
     await schema.validate(req.body);
     return next();

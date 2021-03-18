@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./src/www",
-    "test": "mocha --reporter nyan test/validator.js"
+    "test": "mocha --reporter nyan test/**"
   },
   "dependencies": {
     "chai": "^4.3.3",
@@ -19,6 +19,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
-    "@types/node": "^14.14.28"
+    "@types/node": "^14.14.28",
+    "chai-files": "^1.4.0"
   }
 }

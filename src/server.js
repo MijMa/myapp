@@ -1,5 +1,6 @@
+/*
 var express = require("express");
-var app = require('../src/app');
+var app = require('./app');
 var http = require('http');
 
 var server = express();
@@ -10,3 +11,4 @@ server.listen(port);
 console.log(`Server running on ${port}`)
 
 module.exports = server;
+*/

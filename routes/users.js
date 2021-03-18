@@ -12,13 +12,12 @@ router.get('/', function(req, res, next) {
 /* PUT Validate received json. */
 router.put('/', validator.validator, vastaanotaPUT);
 
-function vastaanotaPUT(req, res, next) {
-
+async function vastaanotaPUT(req, res, next) {
     try {
       var person = JSON.stringify(req.body, null, '\t');
-      fs.writeFile('persontestdata.json', person, () => {
-        console.log("Why does writefile() need a callback?");
+      await fs.writeFile('persontestdata.json', person, () => {
       })
+      
     } catch (err) {
       console.log('Error writing persontestdata.json:' + err.message)
     }
